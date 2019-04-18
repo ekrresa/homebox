@@ -9,8 +9,8 @@ function GoldUser(name, email) {
 GoldUser.prototype = Object.create(User.prototype);
 GoldUser.prototype.constructor = GoldUser;
 
-GoldUser.prototype.rentMovie = function(title) {
-  if (this.cart.length <= 2) {
+GoldUser.prototype.addMovieToCart = function(title) {
+  if (this.cart.length < 2) {
     var movie = this.readMovie(title);
     this.cart.push(movie);
     return "Movie added to cart";
@@ -21,4 +21,5 @@ GoldUser.prototype.rentMovie = function(title) {
 // var mike = new GoldUser("mike", "mike@gmail.com", "pass");
 // mike.rentMovie("Fear");
 // mike.rentMovie("Star Trek");
-// console.log(mike.cart);
+// mike.rentMovie("Fear");
+// console.log("Cart", mike.cart);
