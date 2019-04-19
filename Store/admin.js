@@ -9,8 +9,8 @@ function Admin(name, email, password) {
   this.id = adminsDB.length > 0 ? adminsDB[adminsDB.length - 1].id + 1 : 1;
 }
 
-Admin.prototype.addMovie = function(title, genre, quantity, format, year) {
-  Movie.createMovie(title, genre, quantity, format, year);
+Admin.prototype.addMovie = function(title, genre, quantity, price, year) {
+  Movie.createMovie(title, genre, quantity, price, year);
 };
 
 Admin.prototype.getMoviefromDB = function(title) {
@@ -27,8 +27,12 @@ Admin.prototype.readAllMovies = function() {
   return "Err";
 };
 
-Admin.prototype.editMovie = function(title, updateObj) {
+Admin.prototype.editMultipleProps = function(title, updateObj) {
   return Movie.editMovie(title, updateObj);
+};
+
+Admin.prototype.editMovie = function(title, prop, newValue) {
+  return Movie.editMovie(title, prop, newValue);
 };
 
 Admin.prototype.deleteMovie = function(title, year) {
