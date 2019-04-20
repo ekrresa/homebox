@@ -4,7 +4,6 @@ function Movie(title, genre, quantity, price, year) {
   this.title = title;
   this.genre = genre;
   this.quantity = quantity;
-  this.price = price;
   this.year = year;
   this.id = moviesDB.length > 0 ? moviesDB[moviesDB.length - 1].id + 1 : 1;
 
