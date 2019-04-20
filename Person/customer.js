@@ -44,20 +44,35 @@ Customer.prototype.emptyCart = function() {
 };
 
 Customer.prototype.checkout = function() {
-  if (this.cart.length > 0) {
-    var rental = new Rental(this.id, this.cart);
-    console.log(rental);
+  // Check if cart is empty
+  if (this.cart.length === 0) {
+    return "Cart is empty";
+  }
 
+  var oldRentals = Rental.readByCustomer(this.id);
+
+  // Check if customer has rental history
+  if (oldRentals.length === 0) {
+    var rental = new Rental(this.id, this.cart);
     this.cart.length = 0;
     return "Thanks for the rental. Please return before due date";
   }
-  return "Cart is empty";
+
+  // Check if there's outstanding rental for customer
+  for (const item of oldRentals) {
+    if (item.status === "open") {
+      return "You have an open rental. Return the movies please";
+    }
+  }
+  var rental = new Rental(this.id, this.cart);
+  this.cart.length = 0;
+  return "Thanks for the rental. Please return before due date";
 };
 
 module.exports = Customer;
 
-var mike = new Customer("mike", "mike@gmail.com", 1000);
-var james = new Customer("james", "james@gmail.com", 1000);
-james.addMovieToCart("Fear");
-james.addMovieToCart("Star Trek");
-console.log(james.viewCart());
+// var mike = new Customer("mike", "mike@gmail.com", 1000);
+// var james = new Customer("james", "james@gmail.com", 1000);
+// james.addMovieToCart("Fear");
+// james.addMovieToCart("Star Trek");
+// console.log(james.checkout());
