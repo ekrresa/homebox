@@ -1,11 +1,12 @@
 var Person = require("./person");
+var Rental = require("../Store/rental");
 
 function Customer(name, email, monthlyFee) {
   if (monthlyFee === 1000) {
     Person.call(this, name, email);
     this.cart = [];
   } else {
-    throw "Invalid fee";
+    throw "Incorrect fee";
   }
 }
 
@@ -34,8 +35,19 @@ Customer.prototype.removeMovieFromCart = function(title) {
   return "Movie not found in cart";
 };
 
-Customer.prototype.checkout = function(title) {
+Customer.prototype.viewCart = function() {
+  return this.cart.length > 0 ? this.cart : "Cart empty";
+};
+
+Customer.prototype.emptyCart = function() {
+  this.cart.length = 0;
+};
+
+Customer.prototype.checkout = function() {
   if (this.cart.length > 0) {
+    var rental = new Rental(this.id, this.cart);
+    console.log(rental);
+
     this.cart.length = 0;
     return "Thanks for the rental. Please return before due date";
   }
@@ -43,3 +55,9 @@ Customer.prototype.checkout = function(title) {
 };
 
 module.exports = Customer;
+
+var mike = new Customer("mike", "mike@gmail.com", 1000);
+var james = new Customer("james", "james@gmail.com", 1000);
+james.addMovieToCart("Fear");
+james.addMovieToCart("Star Trek");
+console.log(james.viewCart());
