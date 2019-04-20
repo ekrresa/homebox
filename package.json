@@ -1,0 +1,26 @@
+{
+  "name": "movie-rental-oop",
+  "version": "1.0.0",
+  "description": "Modelling a movie rental store with objects.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ochuko56/homebox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ochuko56/homebox/issues"
+  },
+  "homepage": "https://github.com/ochuko56/homebox#readme",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
