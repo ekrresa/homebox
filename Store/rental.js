@@ -5,7 +5,7 @@ function Rental(id, cart) {
   this.id = rentalDB.length > 0 ? rentalDB[rentalDB.length - 1].id + 1 : 1;
   this.customer_id = id;
   this.movies = cart;
-  this.status = "Not Due";
+  this.status = "open";
   this.rentDate = date.toDateString();
   this.dueDate = addDays(5);
 }
