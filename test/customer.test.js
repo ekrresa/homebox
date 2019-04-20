@@ -23,4 +23,9 @@ describe("Customer Tests", function() {
       new Customer("paul", "paul@gmail.com", 100);
     }).toThrow();
   });
+  test("should add movie to cart", function() {
+    var result = mike.addMovieToCart("Fear");
+    expect(result).toBe("Movie added to cart");
+    expect(mike.cart).toEqual(expect.anything());
+  });
 });
