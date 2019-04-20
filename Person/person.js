@@ -4,6 +4,7 @@ var Movie = require("../Store/movie");
 function Person(name, email) {
   this.name = name;
   this.email = email;
+  this.id = usersDB.length > 0 ? usersDB[usersDB.length - 1].id + 1 : 1;
 
   usersDB.push(this);
 }
