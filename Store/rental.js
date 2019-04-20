@@ -10,8 +10,37 @@ function Rental(id, cart) {
   this.dueDate = addDays(5);
 }
 
-Rental.prototype.viewRentals = function() {
+Rental.readOne = function(id) {
+  for (const rental of rentalDB) {
+    if (rental.id === id) {
+      return rental;
+    }
+  }
+  return false;
+};
+
+Rental.readByCustomer = function(cus_id) {
+  var customerRentals = [];
+  for (const rental of rentalDB) {
+    if (rental.customer_id === cus_id) {
+      customerRentals.push(rental);
+    }
+  }
+  return customerRentals;
+};
+
+Rental.viewRentals = function() {
   return rentalDB;
+};
+
+Rental.editRentals = function(id, prop, newValue) {
+  var rental = Rental.prototype.readOne(id);
+
+  if (rental && rental.hasOwnProperty(prop)) {
+    rental[prop] = newValue;
+    return rental;
+  }
+  return "Rental not found";
 };
 
 // Add days to current date
