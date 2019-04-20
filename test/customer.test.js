@@ -26,6 +26,8 @@ describe("Customer Tests", function() {
   test("should add movie to cart", function() {
     var result = mike.addMovieToCart("Fear");
     expect(result).toBe("Movie added to cart");
-    expect(mike.cart).toEqual(expect.anything());
+    expect(mike.cart).toEqual(
+      expect.arrayContaining([expect.objectContaining({ title: expect.any(String) })])
+    );
   });
 });
