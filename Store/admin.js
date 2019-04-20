@@ -1,5 +1,4 @@
 var adminsDB = require("../database").admins;
-// var moviesDB = require("../database").movies;
 var Movie = require("./movie");
 
 function Admin(name, email, password) {
