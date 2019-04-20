@@ -10,6 +10,10 @@ function Rental(id, cart) {
   this.dueDate = addDays(5);
 }
 
+Rental.prototype.viewRentals = function() {
+  return rentalDB;
+};
+
 // Add days to current date
 function addDays(days) {
   var time = new Date().getTime();
