@@ -53,7 +53,8 @@ Customer.prototype.checkout = function() {
 
   // Check if customer has rental history
   if (oldRentals.length === 0) {
-    var rental = new Rental(this.id, this.cart);
+    var movies = this.cart.slice();
+    var rental = new Rental(this.id, movies);
     this.cart.length = 0;
     return "Thanks for the rental. Please return before due date";
   }
@@ -69,10 +70,13 @@ Customer.prototype.checkout = function() {
   return "Thanks for the rental. Please return before due date";
 };
 
-module.exports = Customer;
+Customer.prototype.viewRentals = function() {
+  var rentals = Rental.readByCustomer(this.id);
 
-// var mike = new Customer("mike", "mike@gmail.com", 1000);
-// var james = new Customer("james", "james@gmail.com", 1000);
-// james.addMovieToCart("Fear");
-// james.addMovieToCart("Star Trek");
-// console.log(james.checkout());
+  if (rentals.length > 0) {
+    return rentals;
+  }
+  return "No rentals for this customer";
+};
+
+module.exports = Customer;
