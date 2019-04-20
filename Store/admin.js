@@ -55,3 +55,5 @@ Admin.prototype.viewRentalsInDB = function() {
 Admin.prototype.editRental = function(id, prop, newValue) {
   return Rental.editRentals(id, prop, newValue);
 };
+
+module.exports = Admin;
