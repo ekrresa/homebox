@@ -1,5 +1,6 @@
 var adminsDB = require("../database").admins;
 var Movie = require("./movie");
+var Rental = require("./rental");
 
 function Admin(name, email, password) {
   this.name = name;
@@ -36,4 +37,21 @@ Admin.prototype.editMovie = function(title, prop, newValue) {
 
 Admin.prototype.deleteMovie = function(title, year) {
   return Movie.deleteMovie(title, year);
+};
+
+Admin.prototype.getRental = function() {
+  return Rental.readOne(id);
+};
+
+Admin.prototype.getRentalByCustomer = function() {
+  var rental = Rental.getRentalByCustomer();
+  return rental.length > 0 ? rental : "No rentals by this customer";
+};
+
+Admin.prototype.viewRentalsInDB = function() {
+  return Rental.viewRentals();
+};
+
+Admin.prototype.editRental = function(id, prop, newValue) {
+  return Rental.editRentals(id, prop, newValue);
 };
