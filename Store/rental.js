@@ -8,6 +8,8 @@ function Rental(id, cart) {
   this.status = "open";
   this.rentDate = date.toDateString();
   this.dueDate = addDays(5);
+
+  rentalDB.push(this);
 }
 
 Rental.readOne = function(id) {
