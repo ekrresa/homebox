@@ -58,4 +58,10 @@ describe("Admin Object Tests", function() {
       expect.arrayContaining([expect.objectContaining({ status: expect.any(String) })])
     );
   });
+  test("should get edit rentals", function() {
+    expect(oscar.editRental(2, "status", "closed")).toEqual(
+      expect.objectContaining({ status: "closed" })
+    );
+    expect(oscar.editRental(3, "status", "late")).toBe("Rental not found");
+  });
 });
