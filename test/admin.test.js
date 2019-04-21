@@ -35,4 +35,12 @@ describe("Admin Object Tests", function() {
     expect(oscar.editMovie("Apocalypto", "year", 2001)).toBe("Movie not found");
     expect(oscar.editMultipleProps("Spiderman", "year", 2001)).toBe("Movie not found");
   });
+
+  test("should delete movie", function() {
+    expect(oscar.deleteMovie("Jack Reacher", 2011)).toBe("Movie Deleted");
+    expect(oscar.readAllMovies()).not.toEqual(
+      expect.arrayContaining([expect.objectContaining({ title: "Jack Reacher" })])
+    );
+    expect(oscar.readAllMovies().length).toBe(10);
+  });
 });
