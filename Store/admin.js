@@ -28,7 +28,7 @@ Admin.prototype.readAllMovies = function() {
 };
 
 Admin.prototype.editMultipleProps = function(title, updateObj) {
-  return Movie.editMovie(title, updateObj);
+  return Movie.editMultipleProps(title, updateObj);
 };
 
 Admin.prototype.editMovie = function(title, prop, newValue) {
@@ -57,3 +57,9 @@ Admin.prototype.editRental = function(id, prop, newValue) {
 };
 
 module.exports = Admin;
+
+// var oscar = new Admin("oscar", "oscar@gmail.com", "passed");
+// oscar.addMovie("Jack Reacher", "Action", 14, 2012);
+// console.log(Movie.getMovie("Jack Reacher"));
+// var obj = { quantity: 19, year: 2011 };
+// console.log(oscar.editMultipleProps("Jack Reacher", obj));

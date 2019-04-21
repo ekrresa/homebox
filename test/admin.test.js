@@ -6,12 +6,14 @@ describe("Admin Object Tests", function() {
   test("should be an admin object", function() {
     expect(oscar instanceof Admin).toBe(true);
   });
+
   test("should add a movie", function() {
     oscar.addMovie("Jack Reacher", "Action", 14, 2012);
     expect(oscar.readAllMovies()).toEqual(
       expect.arrayContaining([expect.objectContaining({ title: "Jack Reacher" })])
     );
   });
+
   test("should read movies from database", function() {
     expect(oscar.getMoviefromDB("Jack Reacher")).toMatchObject({ title: "Jack Reacher" });
     expect(oscar.readAllMovies()).toEqual(
@@ -19,12 +21,18 @@ describe("Admin Object Tests", function() {
     );
     expect(oscar.getMoviefromDB("Aquaman")).toBe("Movie not found");
   });
+
   test("should edit movies", function() {
-    var obj = { quantity: 14, year: 2011 };
-    console.log(oscar.getMoviefromDB("Jack Reacher"));
+    var obj = { quantity: 19, year: 2011 };
     expect(oscar.editMultipleProps("Jack Reacher", obj)).toMatchObject({
-      quantity: 14,
+      quantity: 19,
       year: 2011
     });
+    expect(oscar.editMovie("Fear", "year", 1996)).toMatchObject({
+      title: "Fear",
+      year: 1996
+    });
+    expect(oscar.editMovie("Apocalypto", "year", 2001)).toBe("Movie not found");
+    expect(oscar.editMultipleProps("Spiderman", "year", 2001)).toBe("Movie not found");
   });
 });
