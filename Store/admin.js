@@ -39,12 +39,12 @@ Admin.prototype.deleteMovie = function(title, year) {
   return Movie.deleteMovie(title, year);
 };
 
-Admin.prototype.getRental = function() {
+Admin.prototype.getRental = function(id) {
   return Rental.readOne(id);
 };
 
-Admin.prototype.getRentalByCustomer = function() {
-  var rental = Rental.getRentalByCustomer();
+Admin.prototype.getRentalByCustomer = function(customer_id) {
+  var rental = Rental.getRentalByCustomer(customer_id);
   return rental.length > 0 ? rental : "No rentals by this customer";
 };
 

@@ -43,4 +43,7 @@ describe("Admin Object Tests", function() {
     );
     expect(oscar.readAllMovies().length).toBe(10);
   });
+  test("should get a rental", function() {
+    expect(oscar.getRental(2)).toEqual(expect.objectContaining({ movies: expect.any(Array) }));
+  });
 });
