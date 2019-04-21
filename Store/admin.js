@@ -50,7 +50,8 @@ Admin.prototype.getRentalByCustomer = function(customer_id) {
 };
 
 Admin.prototype.viewRentalsInDB = function() {
-  return Rental.viewRentals();
+  var rentals = Rental.viewRentals();
+  return rentals.length === 0 ? "rentalDB is empty" : rentals;
 };
 
 Admin.prototype.editRental = function(id, prop, newValue) {
@@ -58,9 +59,3 @@ Admin.prototype.editRental = function(id, prop, newValue) {
 };
 
 module.exports = Admin;
-
-// var oscar = new Admin("oscar", "oscar@gmail.com", "passed");
-// oscar.addMovie("Jack Reacher", "Action", 14, 2012);
-// console.log(Movie.getMovie("Jack Reacher"));
-// var obj = { quantity: 19, year: 2011 };
-// console.log(oscar.editMultipleProps("Jack Reacher", obj));

@@ -53,4 +53,9 @@ describe("Admin Object Tests", function() {
     );
     expect(oscar.getRentalByCustomer(1)).toBe("No rentals by this customer");
   });
+  test("should get all rentals", function() {
+    expect(oscar.viewRentalsInDB()).toEqual(
+      expect.arrayContaining([expect.objectContaining({ status: expect.any(String) })])
+    );
+  });
 });
