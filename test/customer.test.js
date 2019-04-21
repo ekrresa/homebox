@@ -63,7 +63,6 @@ describe("Customer Tests", function() {
     mike.addMovieToCart("I,Robot");
     mike.addMovieToCart("Spotlight");
     mike.checkout();
-    console.log(mike.cart.length);
     expect(mike.viewCart()).toEqual("Cart empty");
     expect(mike.viewRentals()).toEqual(
       expect.arrayContaining([expect.objectContaining({ customer_id: mike.id, status: "open" })])
