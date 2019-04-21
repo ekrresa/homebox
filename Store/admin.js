@@ -9,13 +9,13 @@ function Admin(name, email, password) {
   this.id = adminsDB.length > 0 ? adminsDB[adminsDB.length - 1].id + 1 : 1;
 }
 
-Admin.prototype.addMovie = function(title, genre, quantity, price, year) {
-  Movie.createMovie(title, genre, quantity, price, year);
+Admin.prototype.addMovie = function(title, genre, quantity, year) {
+  Movie.createMovie(title, genre, quantity, year);
 };
 
 Admin.prototype.getMoviefromDB = function(title) {
   var movie = Movie.getMovie(title);
-  return movie;
+  return movie === false ? "Movie not found" : movie;
 };
 
 Admin.prototype.readAllMovies = function() {
@@ -28,7 +28,7 @@ Admin.prototype.readAllMovies = function() {
 };
 
 Admin.prototype.editMultipleProps = function(title, updateObj) {
-  return Movie.editMovie(title, updateObj);
+  return Movie.editMultipleProps(title, updateObj);
 };
 
 Admin.prototype.editMovie = function(title, prop, newValue) {
@@ -39,19 +39,23 @@ Admin.prototype.deleteMovie = function(title, year) {
   return Movie.deleteMovie(title, year);
 };
 
-Admin.prototype.getRental = function() {
-  return Rental.readOne(id);
+Admin.prototype.getRental = function(id) {
+  var rental = Rental.readOne(id);
+  return rental === false ? "Rental does not exist" : rental;
 };
 
-Admin.prototype.getRentalByCustomer = function() {
-  var rental = Rental.getRentalByCustomer();
+Admin.prototype.getRentalByCustomer = function(customer_id) {
+  var rental = Rental.readByCustomer(customer_id);
   return rental.length > 0 ? rental : "No rentals by this customer";
 };
 
 Admin.prototype.viewRentalsInDB = function() {
-  return Rental.viewRentals();
+  var rentals = Rental.viewRentals();
+  return rentals.length === 0 ? "rentalDB is empty" : rentals;
 };
 
 Admin.prototype.editRental = function(id, prop, newValue) {
   return Rental.editRentals(id, prop, newValue);
 };
+
+module.exports = Admin;

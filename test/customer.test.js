@@ -4,16 +4,19 @@ var customerDB = require("../database").customers;
 describe("Customer Tests", function() {
   var mike;
   var felix;
+  var jay;
 
   beforeEach(function() {
     mike = new Customer("mike", "mike@gmail.com", 1000);
     felix = new Customer("felix", "felix@gmail.com", 1000);
+    jay = new Customer("jay", "jay@gmail.com", 1000);
   });
 
   afterEach(function() {
     customerDB.length = 0;
     mike.emptyCart();
     felix.emptyCart();
+    jay.emptyCart();
   });
 
   test("should be an instance of Customer", function() {
@@ -63,11 +66,15 @@ describe("Customer Tests", function() {
     mike.addMovieToCart("I,Robot");
     mike.addMovieToCart("Spotlight");
     mike.checkout();
-    console.log(mike.cart.length);
     expect(mike.viewCart()).toEqual("Cart empty");
     expect(mike.viewRentals()).toEqual(
       expect.arrayContaining([expect.objectContaining({ customer_id: mike.id, status: "open" })])
     );
+  });
+  test("should check if customer has open rental", function() {
+    jay.addMovieToCart("I,Robot");
+    jay.addMovieToCart("Salt");
+    expect(jay.checkout()).toBe("You have an open rental. Return the movies please");
   });
   test("should check rental history of customer", function() {
     mike.addMovieToCart("I,Robot");

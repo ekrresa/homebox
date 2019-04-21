@@ -36,7 +36,7 @@ Rental.viewRentals = function() {
 };
 
 Rental.editRentals = function(id, prop, newValue) {
-  var rental = Rental.prototype.readOne(id);
+  var rental = Rental.readOne(id);
 
   if (rental && rental.hasOwnProperty(prop)) {
     rental[prop] = newValue;
