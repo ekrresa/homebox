@@ -40,11 +40,12 @@ Admin.prototype.deleteMovie = function(title, year) {
 };
 
 Admin.prototype.getRental = function(id) {
-  return Rental.readOne(id);
+  var rental = Rental.readOne(id);
+  return rental === false ? "Rental does not exist" : rental;
 };
 
 Admin.prototype.getRentalByCustomer = function(customer_id) {
-  var rental = Rental.getRentalByCustomer(customer_id);
+  var rental = Rental.readByCustomer(customer_id);
   return rental.length > 0 ? rental : "No rentals by this customer";
 };
 

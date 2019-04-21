@@ -45,5 +45,12 @@ describe("Admin Object Tests", function() {
   });
   test("should get a rental", function() {
     expect(oscar.getRental(2)).toEqual(expect.objectContaining({ movies: expect.any(Array) }));
+    expect(oscar.getRental(7)).toBe("Rental does not exist");
+  });
+  test("should get rental history of a customer", function() {
+    expect(oscar.getRentalByCustomer(3)).toEqual(
+      expect.arrayContaining([expect.objectContaining({ status: expect.any(String) })])
+    );
+    expect(oscar.getRentalByCustomer(1)).toBe("No rentals by this customer");
   });
 });
