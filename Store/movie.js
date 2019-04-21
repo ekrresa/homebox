@@ -1,6 +1,6 @@
 var moviesDB = require("../database").movies;
 
-function Movie(title, genre, quantity, price, year) {
+function Movie(title, genre, quantity, year) {
   this.title = title;
   this.genre = genre;
   this.quantity = quantity;

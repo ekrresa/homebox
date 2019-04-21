@@ -9,13 +9,13 @@ function Admin(name, email, password) {
   this.id = adminsDB.length > 0 ? adminsDB[adminsDB.length - 1].id + 1 : 1;
 }
 
-Admin.prototype.addMovie = function(title, genre, quantity, price, year) {
-  Movie.createMovie(title, genre, quantity, price, year);
+Admin.prototype.addMovie = function(title, genre, quantity, year) {
+  Movie.createMovie(title, genre, quantity, year);
 };
 
 Admin.prototype.getMoviefromDB = function(title) {
   var movie = Movie.getMovie(title);
-  return movie;
+  return movie === false ? "Movie not found" : movie;
 };
 
 Admin.prototype.readAllMovies = function() {
