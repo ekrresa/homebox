@@ -35,6 +35,12 @@ describe("Customer Tests", function() {
       expect.arrayContaining([expect.objectContaining({ title: expect.any(String) })])
     );
   });
+  test("should not add two movies to cart", function() {
+    mike.addMovieToCart("Fear");
+    var result = mike.addMovieToCart("Fear");
+    expect(result).toBe("Can't add two or more movies to cart");
+    expect(mike.cart.length).toBe(1);
+  });
   test("should check if movie is available", function() {
     expect(mike.addMovieToCart("The Fugitive")).toBe("Movie is not available");
   });

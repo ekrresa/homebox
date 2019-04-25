@@ -13,8 +13,23 @@ function Customer(name, email, monthlyFee) {
 Customer.prototype = Object.create(Person.prototype);
 Customer.prototype.constructor = Customer;
 
+// Checks if movie is already present in cart
+// Adds it if absent and if movie is available.
+// Returns message if found in cart
 Customer.prototype.addMovieToCart = function(title) {
-  var movie = this.readMovie(title);
+  var movieCheck = false;
+
+  for (const movie of this.cart) {
+    if (movie.title === title) {
+      movieCheck = true;
+    }
+  }
+
+  if (movieCheck === false) {
+    var movie = this.readMovie(title);
+  } else {
+    return "Can't add two or more movies to cart";
+  }
 
   if (movie) {
     this.cart.push(movie);
