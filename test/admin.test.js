@@ -8,7 +8,7 @@ describe("Admin Object Tests", function() {
   });
 
   test("should add a movie", function() {
-    oscar.addMovie("Jack Reacher", "Action", 14, 2012);
+    oscar.addMovie("Jack Reacher", "Action", 2012);
     expect(oscar.readAllMovies()).toEqual(
       expect.arrayContaining([expect.objectContaining({ title: "Jack Reacher" })])
     );
@@ -23,11 +23,6 @@ describe("Admin Object Tests", function() {
   });
 
   test("should edit movies", function() {
-    var obj = { quantity: 19, year: 2011 };
-    expect(oscar.editMultipleProps("Jack Reacher", obj)).toMatchObject({
-      quantity: 19,
-      year: 2011
-    });
     expect(oscar.editMovie("Fear", "year", 1996)).toMatchObject({
       title: "Fear",
       year: 1996
@@ -37,7 +32,7 @@ describe("Admin Object Tests", function() {
   });
 
   test("should delete movie", function() {
-    expect(oscar.deleteMovie("Jack Reacher", 2011)).toBe("Movie Deleted");
+    expect(oscar.deleteMovie("Jack Reacher", 2012)).toBe("Movie Deleted");
     expect(oscar.readAllMovies()).not.toEqual(
       expect.arrayContaining([expect.objectContaining({ title: "Jack Reacher" })])
     );

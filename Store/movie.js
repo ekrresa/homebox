@@ -1,17 +1,16 @@
 var moviesDB = require("../database").movies;
 
-function Movie(title, genre, quantity, year) {
+function Movie(title, genre, year) {
   this.title = title;
   this.genre = genre;
-  this.quantity = quantity;
   this.year = year;
   this.id = moviesDB.length > 0 ? moviesDB[moviesDB.length - 1].id + 1 : 1;
 
   moviesDB.push(this);
 }
 
-Movie.createMovie = function(title, genre, quantity, price, year) {
-  return new Movie(title, genre, quantity, price, year);
+Movie.createMovie = function(title, genre, price, year) {
+  return new Movie(title, genre, price, year);
 };
 
 Movie.getMovie = function(name) {
