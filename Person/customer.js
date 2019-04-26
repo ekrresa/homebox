@@ -1,5 +1,5 @@
 var Person = require("./person");
-var Rental = require("../Store/rental");
+var Rental = require("../Store/rental"); // Import Rental function
 
 function Customer(name, email, monthlyFee) {
   if (monthlyFee === 1000) {
@@ -63,14 +63,14 @@ Customer.prototype.checkout = function() {
   if (this.cart.length === 0) {
     return "Cart is empty";
   }
-
+  //Can't checkout if there are more than movies in cart
   if (this.cart.length > 4) {
     return "Can't rent more than four movies";
   }
 
   var oldRentals = Rental.readByCustomer(this.id);
 
-  // Check if customer has rental history
+  // No rental history means no open rentals. Checkout goes through
   if (oldRentals.length === 0) {
     var movies = this.cart.slice();
     var rental = new Rental(this.id, movies);
@@ -84,11 +84,13 @@ Customer.prototype.checkout = function() {
       return "You have an open rental. Return the movies please";
     }
   }
+  // No open rentals. Checkout succeeds
   var rental = new Rental(this.id, this.cart);
   this.cart.length = 0;
   return "Thanks for the rental. Please return before due date";
 };
 
+// Rental history of Customer. Can't check for others
 Customer.prototype.viewRentals = function() {
   var rentals = Rental.readByCustomer(this.id);
 

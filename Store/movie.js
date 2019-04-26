@@ -29,6 +29,7 @@ Movie.getAllMovies = function() {
   return false;
 };
 
+// Edit multiple movie properties
 Movie.editMultipleProps = function(title, updateObj) {
   var movie = Movie.getMovie(title);
 
