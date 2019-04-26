@@ -64,6 +64,10 @@ Customer.prototype.checkout = function() {
     return "Cart is empty";
   }
 
+  if (this.cart.length > 4) {
+    return "Can't rent more than four movies";
+  }
+
   var oldRentals = Rental.readByCustomer(this.id);
 
   // Check if customer has rental history

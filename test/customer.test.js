@@ -77,6 +77,14 @@ describe("Customer Tests", function() {
       expect.arrayContaining([expect.objectContaining({ customer_id: mike.id, status: "open" })])
     );
   });
+  test("should not checkout if cart has over four movies", function() {
+    felix.addMovieToCart("Disclosure");
+    felix.addMovieToCart("I,Robot");
+    felix.addMovieToCart("Spotlight");
+    felix.addMovieToCart("Mad Max");
+    felix.addMovieToCart("Salt");
+    expect(felix.checkout()).toBe("Can't rent more than four movies");
+  });
   test("should check if customer has open rental", function() {
     jay.addMovieToCart("I,Robot");
     jay.addMovieToCart("Salt");
