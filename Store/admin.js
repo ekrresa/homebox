@@ -9,6 +9,7 @@ function Admin(name, email, password) {
   this.id = adminsDB.length > 0 ? adminsDB[adminsDB.length - 1].id + 1 : 1;
 }
 
+//Add movie to database
 Admin.prototype.addMovie = function(title, genre, year) {
   Movie.createMovie(title, genre, year);
 };
@@ -27,10 +28,12 @@ Admin.prototype.readAllMovies = function() {
   return "Err";
 };
 
+// Edit multiple movie properties
 Admin.prototype.editMultipleProps = function(title, updateObj) {
   return Movie.editMultipleProps(title, updateObj);
 };
 
+// Edit one property
 Admin.prototype.editMovie = function(title, prop, newValue) {
   return Movie.editMovie(title, prop, newValue);
 };
@@ -44,6 +47,7 @@ Admin.prototype.getRental = function(id) {
   return rental === false ? "Rental does not exist" : rental;
 };
 
+// Get all rentals by a customer
 Admin.prototype.getRentalByCustomer = function(customer_id) {
   var rental = Rental.readByCustomer(customer_id);
   return rental.length > 0 ? rental : "No rentals by this customer";

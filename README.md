@@ -33,3 +33,31 @@ The application is a movie rental store where customers can subscribe monthly to
 
 - Customer
   - Name, Email, Monthlyfee
+
+## Methods
+
+- Admin
+
+  - addMovie
+  - getMovieFromDB
+  - readAllMovies
+  - editMultipleProps (Edit multiple properties of a movie)
+  - editMovie (Edit one property)
+  - deleteMovie
+  - getRental
+  - getRentalByCustomer (Get rental history of a customer)
+  - viewRentalsInDB
+  - editRental
+
+- Customer
+
+  - addMovieToCart
+  - removeMovieFromCart
+  - viewCart
+  - emptyCart
+  - checkout
+  - viewRentals (View rental made by customer)
+
+- Person
+  - readMovie
+  - getAllMovies
