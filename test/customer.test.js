@@ -35,6 +35,12 @@ describe("Customer Tests", function() {
       expect.arrayContaining([expect.objectContaining({ title: expect.any(String) })])
     );
   });
+  test("should not add two movies to cart", function() {
+    mike.addMovieToCart("Fear");
+    var result = mike.addMovieToCart("Fear");
+    expect(result).toBe("Can't add two or more movies to cart");
+    expect(mike.cart.length).toBe(1);
+  });
   test("should check if movie is available", function() {
     expect(mike.addMovieToCart("The Fugitive")).toBe("Movie is not available");
   });
@@ -70,6 +76,14 @@ describe("Customer Tests", function() {
     expect(mike.viewRentals()).toEqual(
       expect.arrayContaining([expect.objectContaining({ customer_id: mike.id, status: "open" })])
     );
+  });
+  test("should not checkout if cart has over four movies", function() {
+    felix.addMovieToCart("Disclosure");
+    felix.addMovieToCart("I,Robot");
+    felix.addMovieToCart("Spotlight");
+    felix.addMovieToCart("Mad Max");
+    felix.addMovieToCart("Salt");
+    expect(felix.checkout()).toBe("Can't rent more than four movies");
   });
   test("should check if customer has open rental", function() {
     jay.addMovieToCart("I,Robot");
